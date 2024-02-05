@@ -22,6 +22,21 @@ def open_file():
         set_file_path(path)
 
 
+def detect_language(content):
+    patterns = {
+        'julia': r'\b(julia|function|using|global|let|struct|importall|println)\b',
+        'ruby': r'\b(ruby|require|puts|def|alias|class|elsif|module)\b'    }
+
+    detected_language = None
+
+    for language, pattern in patterns.items():
+        if re.search(pattern, content, re.IGNORECASE):
+            detected_language = language
+            break
+
+    return detected_language
+
+
 def save_as():
     if file_path == '':
         path = asksaveasfilename(filetypes=[('Python Files', '*.py')])
