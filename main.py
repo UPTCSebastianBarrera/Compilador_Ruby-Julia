@@ -1,7 +1,7 @@
 from tkinter import *
 from tkinter.filedialog import asksaveasfilename, askopenfilename
 import subprocess
-
+import re
 
 compiler = Tk()
 compiler.title('Compilador Ruby/Julia')
