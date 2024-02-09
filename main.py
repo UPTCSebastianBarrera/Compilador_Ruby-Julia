@@ -14,9 +14,10 @@ def set_file_path(path):
 
 
 def open_file():
-    path = askopenfilename(filetypes=[('Python Files', '*.py')])
+    path = askopenfilename(filetypes=[('Julia/Ruby Files', '*.jl .rb')])
     with open(path, 'r') as file:
         code = file.read()
+        code_output.insert("1.0", detect_language(code))
         editor.delete('1.0', END)
         editor.insert('1.0', code)
         set_file_path(path)
@@ -34,7 +35,7 @@ def detect_language(content):
             detected_language = language
             break
 
-    return detected_language
+    return("Lenguaje insertado es: " + detected_language)
 
 
 def save_as():
